@@ -1,6 +1,7 @@
 package telran.b7a.forum.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import telran.b7a.forum.model.Comments;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +29,5 @@ public class ContentDto {
 	LocalDateTime dateCreated;
 	Set<String> tags;
 	Integer likes;
+	List<Comments> comments;
 }
