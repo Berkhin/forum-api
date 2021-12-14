@@ -14,6 +14,7 @@ public interface ForumService {
  ContentDto FindPostByAuthor (String author);
  ContentDto AddComment (String id, CommentDto comment, String author);
  ContentDto DeletePost (String id);
+ ContentDto FindPostByTags (String tags);
  List<ContentDto> FindPostByPeriod (LocalDateTime dateFrom, LocalDateTime to);
  ContentDto UpdatePost (String id);
 	
