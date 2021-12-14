@@ -3,19 +3,33 @@ package telran.b7a.forum.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+
+import telran.b7a.forum.dao.ForumMongoRepository;
 import telran.b7a.forum.dto.CommentDto;
-import telran.b7a.forum.dto.ContentDto;
+import telran.b7a.forum.dto.PostDto;
 
 public class ForumServiceImpl implements ForumService {
+	
+	ForumMongoRepository forumRepository;
+	
+	ModelMapper modelMapper;
+	
+	
+
+	public ForumServiceImpl(ForumMongoRepository forumRepository, ModelMapper modelMapper) {
+		this.forumRepository = forumRepository;
+		this.modelMapper = modelMapper;
+	}
 
 	@Override
-	public ContentDto AddPost(String author) {
-		// TODO Auto-generated method stub
+	public PostDto AddPost(String author) {
+		 if (forumRepository.find)
 		return null;
 	}
 
 	@Override
-	public ContentDto FindPostById(String id) {
+	public PostDto FindPostById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -27,37 +41,37 @@ public class ForumServiceImpl implements ForumService {
 	}
 
 	@Override
-	public ContentDto FindPostByAuthor(String author) {
+	public PostDto FindPostByAuthor(String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ContentDto AddComment(String id, CommentDto comment, String author) {
+	public PostDto AddComment(String id, CommentDto comment, String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ContentDto DeletePost(String id) {
+	public PostDto DeletePost(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ContentDto FindPostByTags(String tags) {
+	public PostDto FindPostByTags(String tags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ContentDto> FindPostByPeriod(LocalDateTime dateFrom, LocalDateTime to) {
+	public List<PostDto> FindPostByPeriod(LocalDateTime dateFrom, LocalDateTime to) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ContentDto UpdatePost(String id) {
+	public PostDto UpdatePost(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

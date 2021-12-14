@@ -4,18 +4,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import telran.b7a.forum.dto.CommentDto;
-import telran.b7a.forum.dto.ContentDto;
+import telran.b7a.forum.dto.PostDto;
 
 public interface ForumService {
 
- ContentDto AddPost (String author);
- ContentDto FindPostById (String id);
+ PostDto AddPost (String author);
+ PostDto FindPostById (String id);
  void Addlike ();
- ContentDto FindPostByAuthor (String author);
- ContentDto AddComment (String id, CommentDto comment, String author);
- ContentDto DeletePost (String id);
- ContentDto FindPostByTags (String tags);
- List<ContentDto> FindPostByPeriod (LocalDateTime dateFrom, LocalDateTime to);
- ContentDto UpdatePost (String id);
+ PostDto FindPostByAuthor (String author);
+ PostDto AddComment (String id, CommentDto comment, String author);
+ PostDto DeletePost (String id);
+ PostDto FindPostByTags (String tags);
+ List<PostDto> FindPostByPeriod (LocalDateTime dateFrom, LocalDateTime to);
+ PostDto UpdatePost (String id);
 	
 }

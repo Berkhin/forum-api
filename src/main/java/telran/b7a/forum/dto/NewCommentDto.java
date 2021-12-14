@@ -8,11 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class AddUpdatePostDto {
-String title;
-String content;
-List<String> tags;
+
+public class NewCommentDto {
+String comment;
 }

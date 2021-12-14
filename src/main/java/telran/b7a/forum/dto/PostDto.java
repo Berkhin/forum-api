@@ -12,22 +12,23 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Singular;
 import telran.b7a.forum.model.Comments;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Builder
-public class ContentDto {
+public class PostDto {
 	String id;
-	@Setter
 	String title;
-	@Setter
 	String content;
 	String author;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	LocalDateTime dateCreated;
+	@Singular
 	Set<String> tags;
 	Integer likes;
-	List<Comments> comments;
+	@Singular
+	List<CommentDto> comments;
 }

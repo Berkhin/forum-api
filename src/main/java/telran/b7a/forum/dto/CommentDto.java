@@ -17,20 +17,9 @@ import lombok.Setter;
 @Builder
 public class CommentDto {
 	String user;
-	@Setter
 	String message;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	LocalDateTime dateCreated;
 	Integer likes;
-
-	public CommentDto(String user, String message) {
-		super();
-		this.user = user;
-		this.message = message;
-	}
-
-	public void addLike() {
-		likes++;
-	}
 
 }
