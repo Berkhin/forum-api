@@ -6,18 +6,25 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-
+@NoArgsConstructor
+@Getter
+@ToString
 public class Post {
 	String id;
 	@Setter 
 	String title;
 	@Setter 
 	String content;
+	@Setter
 	String author;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	LocalDateTime dateCreated;
+	LocalDateTime dateCreated = LocalDateTime.now();
 	Set<String> tags;
 	int likes;
 	Set<Comments> comments;
@@ -26,7 +33,6 @@ public class Post {
 		this.content = content;
 		this.author = author;
 		this.tags = tags;
-		dateCreated = LocalDateTime.now();
 		comments = new HashSet<>();
 	}
 	

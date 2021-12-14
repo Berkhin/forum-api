@@ -9,9 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-//@AllArgsConstructor
-//@NoArgsConstructor
-//@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class NewPostDto {
 String title;
 String content;

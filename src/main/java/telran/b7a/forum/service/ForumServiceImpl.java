@@ -4,51 +4,49 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import telran.b7a.forum.dao.ForumMongoRepository;
 import telran.b7a.forum.dto.CommentDto;
 import telran.b7a.forum.dto.NewCommentDto;
 import telran.b7a.forum.dto.NewPostDto;
 import telran.b7a.forum.dto.PostDto;
+import telran.b7a.forum.exception.PostNotFoundException;
+import telran.b7a.forum.model.Post;
 
+@Component
 public class ForumServiceImpl implements ForumService {
-	
-	ForumMongoRepository forumRepository;
-	
-	ModelMapper modelMapper;
-	
-	
 
+	ForumMongoRepository forumRepository;
+
+	ModelMapper modelMapper;
+
+	@Autowired
 	public ForumServiceImpl(ForumMongoRepository forumRepository, ModelMapper modelMapper) {
 		this.forumRepository = forumRepository;
 		this.modelMapper = modelMapper;
 	}
 
-
-
 	@Override
 	public PostDto addNewPost(NewPostDto newPost, String author) {
-		// TODO Auto-generated method stub
-		return null;
+		Post post = modelMapper.map(newPost, Post.class);
+		post.setAuthor(author);
+		forumRepository.save(post);
+		return modelMapper.map(post, PostDto.class);
 	}
-
-
 
 	@Override
 	public PostDto FindPostById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Post post = forumRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
+		return modelMapper.map(post, PostDto.class);
 	}
-
-
 
 	@Override
 	public void addlike(String id) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 	@Override
 	public Iterable<PostDto> FindPostByAuthor(String author) {
@@ -56,15 +54,11 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
-
-
 	@Override
 	public PostDto AddComment(String id, NewCommentDto comment, String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public PostDto DeletePost(String id) {
@@ -72,15 +66,11 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
-
-
 	@Override
 	public PostDto FindPostByTags(String tags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public List<PostDto> FindPostByPeriod(LocalDateTime dateFrom, LocalDateTime to) {
@@ -88,14 +78,10 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
-
-
 	@Override
 	public PostDto UpdatePost(NewPostDto postUpdateDto, String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }

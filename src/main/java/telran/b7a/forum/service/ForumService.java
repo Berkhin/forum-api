@@ -10,7 +10,7 @@ import telran.b7a.forum.dto.PostDto;
 
 public interface ForumService {
 
- PostDto addNewPost (NewPostDto newPost, String author);
+	PostDto addNewPost (NewPostDto newPost, String author);
  PostDto FindPostById (String id);
  void addlike (String id);
  Iterable<PostDto> FindPostByAuthor (String author);

@@ -18,6 +18,7 @@ import telran.b7a.forum.model.Comments;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 @Builder
 public class PostDto {
 	String id;
