@@ -7,6 +7,8 @@ import org.modelmapper.ModelMapper;
 
 import telran.b7a.forum.dao.ForumMongoRepository;
 import telran.b7a.forum.dto.CommentDto;
+import telran.b7a.forum.dto.NewCommentDto;
+import telran.b7a.forum.dto.NewPostDto;
 import telran.b7a.forum.dto.PostDto;
 
 public class ForumServiceImpl implements ForumService {
@@ -22,11 +24,15 @@ public class ForumServiceImpl implements ForumService {
 		this.modelMapper = modelMapper;
 	}
 
+
+
 	@Override
-	public PostDto AddPost(String author) {
-		 if (forumRepository.find)
+	public PostDto addNewPost(NewPostDto newPost, String author) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	@Override
 	public PostDto FindPostById(String id) {
@@ -34,23 +40,31 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
+
+
 	@Override
-	public void Addlike() {
+	public void addlike(String id) {
 		// TODO Auto-generated method stub
 		
 	}
 
+
+
 	@Override
-	public PostDto FindPostByAuthor(String author) {
+	public Iterable<PostDto> FindPostByAuthor(String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+
 	@Override
-	public PostDto AddComment(String id, CommentDto comment, String author) {
+	public PostDto AddComment(String id, NewCommentDto comment, String author) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	@Override
 	public PostDto DeletePost(String id) {
@@ -58,11 +72,15 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
+
+
 	@Override
 	public PostDto FindPostByTags(String tags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	@Override
 	public List<PostDto> FindPostByPeriod(LocalDateTime dateFrom, LocalDateTime to) {
@@ -70,10 +88,14 @@ public class ForumServiceImpl implements ForumService {
 		return null;
 	}
 
+
+
 	@Override
-	public PostDto UpdatePost(String id) {
+	public PostDto UpdatePost(NewPostDto postUpdateDto, String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
