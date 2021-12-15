@@ -25,6 +25,7 @@ public class Post {
 	String author;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	LocalDateTime dateCreated = LocalDateTime.now();
+	@Setter
 	Set<String> tags;
 	int likes;
 	Set<Comments> comments;
@@ -55,4 +56,9 @@ public class Post {
 	public boolean removeTag(String tag) {
 		return tags.remove(tag);
 	}
+
+//	public void setTags(Set<String> tags) {
+//		tags.addAll(tags);
+//		
+//	}
 }
