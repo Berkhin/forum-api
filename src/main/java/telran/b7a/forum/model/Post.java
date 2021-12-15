@@ -2,15 +2,19 @@ package telran.b7a.forum.model;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import telran.b7a.forum.dto.CommentDto;
+
 
 @NoArgsConstructor
 @Getter
@@ -33,7 +37,7 @@ public class Post {
 		this.title = title;
 		this.content = content;
 		this.author = author;
-		this.tags = tags;
+		this.tags = new HashSet<>();
 		this.comments = new HashSet<>();
 	}
 	
@@ -57,8 +61,4 @@ public class Post {
 		return tags.remove(tag);
 	}
 
-//	public void setTags(Set<String> tags) {
-//		tags.addAll(tags);
-//		
-//	}
 }

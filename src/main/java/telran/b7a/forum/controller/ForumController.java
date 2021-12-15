@@ -63,7 +63,7 @@ public class ForumController {
 		return service.DeletePost(id);
 	}
 	
-	@PostMapping("/post/tags")
+	@PostMapping("/posts/tags")
 	public List<PostDto> findPostByTags (@RequestBody Set<String> tags) {
 		return service.FindPostByTags(tags);
 		

@@ -2,6 +2,7 @@ package telran.b7a.forum.dao;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -15,9 +16,7 @@ public interface ForumMongoRepository extends MongoRepository<Post, String> {
 
 	Stream<Post> findByAuthorIgnoreCase(String author);
 	
-	Stream<PostDto> findByTagsIgnoreCase(String tags);
+	Stream<PostDto> findByTagsInIgnoreCase(Set<String> tags);
 	
 	Stream<PostDto> findByDateCreatedBetween(LocalDate dateFrom, LocalDate to);
-	
-	Stream<PostDto> findByTagsInIgnoreCase(Set<String> tags);
 }
