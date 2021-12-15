@@ -1,7 +1,9 @@
 package telran.b7a.forum.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import telran.b7a.forum.dto.FindPostByPeriodDto;
 import telran.b7a.forum.dto.NewCommentDto;
 import telran.b7a.forum.dto.NewPostDto;
 import telran.b7a.forum.dto.PostDto;
@@ -30,7 +33,7 @@ public class ForumController {
 		this.service = forumService;
 	}
 
-	@PostMapping ("/post/{author}")
+	@PostMapping("/post/{author}")
 	public PostDto addNewPost(@RequestBody NewPostDto newPost,@PathVariable String author) {
 		return service.addNewPost(newPost, author);
 	}
@@ -50,8 +53,8 @@ public class ForumController {
 		return service.FindPostByAuthor(author);
 	}
 
-	@PutMapping("/forum/post/{id}/comment/{author}")
-	public PostDto addComment(@PathVariable("id") String id, NewCommentDto comment,@PathVariable("author") String author) {
+	@PutMapping("/post/{id}/comment/{author}")
+	public PostDto addComment(@PathVariable String id,@RequestBody NewCommentDto comment,@PathVariable String author) {
 		return service.AddComment(id, comment, author);
 	}
 
@@ -60,15 +63,15 @@ public class ForumController {
 		return service.DeletePost(id);
 	}
 	
-	@PostMapping ("/forum/post/{tags}")
-	public PostDto findPostByTags (@RequestBody String tags) {
+	@PostMapping("/post/tags")
+	public List<PostDto> findPostByTags (@RequestBody Set<String> tags) {
 		return service.FindPostByTags(tags);
 		
 	}
 	
-	@PostMapping("/forum/post/?0/?1")
-	public List<PostDto> findPostByPeriod(@RequestBody LocalDateTime dateFrom,@RequestBody LocalDateTime to) {
-		return service.FindPostByPeriod(dateFrom, to);
+	@PostMapping("/posts/period")
+	public List<PostDto> findPostByPeriod(@RequestBody FindPostByPeriodDto findPostsInPeriod) {
+		return service.FindPostByPeriod(findPostsInPeriod);
 	}
 
 	@PutMapping("/post/{id}")

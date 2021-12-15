@@ -1,15 +1,20 @@
 package telran.b7a.forum.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import telran.b7a.forum.dao.ForumMongoRepository;
 import telran.b7a.forum.dto.CommentDto;
+import telran.b7a.forum.dto.FindPostByPeriodDto;
 import telran.b7a.forum.dto.NewCommentDto;
 import telran.b7a.forum.dto.NewPostDto;
 import telran.b7a.forum.dto.PostDto;
@@ -54,16 +59,21 @@ public class ForumServiceImpl implements ForumService {
 
 	@Override
 	public List<PostDto> FindPostByAuthor(String author) {
-		return forumRepository.findByAuthorIgnoreCase(author)
-				.map(s -> modelMapper.map(s, PostDto.class))
+		return forumRepository.findByAuthorIgnoreCase(author).map(s -> modelMapper.map(s, PostDto.class))
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public PostDto AddComment(String id, NewCommentDto comment, String author) {
-//		Comments comments = modelMapper.map(comment, Comments.class);
-//		comments.
-		return null;
+		Post post = forumRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
+		Comments newComment = new Comments(comment.getMessage(), author);
+		System.out.println(newComment);
+		post.addComment(newComment);
+		System.out.println(newComment);
+		forumRepository.save(post);
+		System.out.println(newComment);
+		return modelMapper.map(post, PostDto.class);
+
 	}
 
 	@Override
@@ -74,23 +84,35 @@ public class ForumServiceImpl implements ForumService {
 	}
 
 	@Override
-	public PostDto FindPostByTags(String tags) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> FindPostByTags(Set<String> tags) {
+		return forumRepository.findByTagsInIgnoreCase(tags).map(s -> modelMapper.map(s, PostDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<PostDto> FindPostByPeriod(LocalDateTime dateFrom, LocalDateTime to) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> FindPostByPeriod(FindPostByPeriodDto madePeriod) {
+		return forumRepository.findByDateCreatedBetween(madePeriod.getDateFrom(), madePeriod.getDateTo())
+				.map(s -> modelMapper.map(s, PostDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public PostDto UpdatePost(NewPostDto postUpdateDto, String id) {
 		Post post = forumRepository.findById(id).orElseThrow(() -> new PostNotFoundException(id));
-		post.setContent(postUpdateDto.getContent());
-		post.setTitle(postUpdateDto.getTitle());
-		post.setTags(postUpdateDto.getTags());
+
+		String content = postUpdateDto.getContent();
+		if (content != null) {
+			post.setContent(content);
+		}
+
+		String title = postUpdateDto.getTitle();
+		if (title != null) {
+			post.setTitle(title);
+		}
+
+		Set<String> tags = postUpdateDto.getTags();
+		if (tags != null) {
+			post.setTags(postUpdateDto.getTags());
+		}
+
 		forumRepository.save(post);
 		return modelMapper.map(post, PostDto.class);
 	}

@@ -17,15 +17,16 @@ import lombok.ToString;
 @EqualsAndHashCode(of = { "user", "dateCreated" })
 @ToString
 public class Comments {
+	@Setter
 	String user;
 	@Setter
 	String message;
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	LocalDateTime dateCreated;
+	LocalDateTime dateCreated = LocalDateTime.now();
 	int likes;
 
-	public Comments(String user, String message) {
-		dateCreated = LocalDateTime.now();
+	public Comments(String message, String user) {
+
 		this.user = user;
 		this.message = message;
 		
