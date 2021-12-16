@@ -3,12 +3,13 @@ package telran.b7a.account.service;
 import java.util.List;
 
 import telran.b7a.account.dto.LoginUserDto;
+import telran.b7a.account.dto.RegisterUserDto;
 import telran.b7a.account.dto.RolesDto;
 import telran.b7a.account.dto.UserDto;
 import telran.b7a.account.dto.updateUserDto;
 
 public interface AccountService {
-	UserDto Register(UserDto newUser);
+	UserDto Register(RegisterUserDto newUser);
 
 	UserDto Login(LoginUserDto loginUser);
 
@@ -16,9 +17,9 @@ public interface AccountService {
 
 	UserDto UpdateUser(updateUserDto updateUser, String user);
 
-	RolesDto AddRole(String user, List<RolesDto> roles);
+	RolesDto AddRole(String user, String roles);
 
-	RolesDto DeleteRole(String user, List<RolesDto> roles);
+	RolesDto DeleteRole(String user, String roles);
 
 	void ChangePassword(LoginUserDto changePassword);
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import telran.b7a.account.dto.LoginUserDto;
+import telran.b7a.account.dto.RegisterUserDto;
 import telran.b7a.account.dto.UserDto;
 import telran.b7a.account.dto.RolesDto;
 import telran.b7a.account.dto.updateUserDto;
@@ -20,7 +21,7 @@ import telran.b7a.account.service.AccountService;
 @RestController
 @RequestMapping("/account")
 public class AccountController {
-	@Autowired
+
 	AccountService service;
 	@Autowired
 	public AccountController(AccountService accountServise) {
@@ -29,7 +30,7 @@ public class AccountController {
 	}
 	
 	@PostMapping("/register")
-	public UserDto Register(@RequestBody UserDto newUser) {
+	public UserDto Register(@RequestBody RegisterUserDto newUser) {
 		return service.Register(newUser);
 		
 	}
@@ -39,23 +40,23 @@ public class AccountController {
 		
 	}
 	@DeleteMapping("/user/{user}")
-	public UserDto DeleteUser(@PathVariable("user") String user) {
+	public UserDto DeleteUser(@PathVariable String user) {
 		return service.DeleteUser(user);
 		
 	}
 	@PutMapping("/user/{user}")
-	public UserDto UpdateUser(@RequestBody updateUserDto updateUser,@PathVariable("user") String user) {
+	public UserDto UpdateUser(@RequestBody updateUserDto updateUser,@PathVariable String user) {
 		return service.UpdateUser(updateUser, user);
 		
 	}
 	@PutMapping("/user/{user}/role/{role}")
-	public RolesDto AddRole(@PathVariable("user") String user,@PathVariable List<RolesDto> roles) {
-		return service.AddRole(user, roles);
+	public RolesDto AddRole(@PathVariable   String user,@PathVariable   String role) {
+		return service.AddRole(user, role);
 		
 	}
 	@DeleteMapping("/user/{user}/role/{role}")
-	public RolesDto DeleteRole(@PathVariable("user")String user,@PathVariable List<RolesDto> roles) {
-		return service.DeleteRole(user, roles);
+	public RolesDto DeleteRole(@PathVariable  String login,@PathVariable  String role) {
+		return service.DeleteRole(login, role);
 		
 	}
 	@PutMapping("/password")

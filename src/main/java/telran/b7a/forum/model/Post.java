@@ -33,6 +33,7 @@ public class Post {
 	Set<String> tags = new HashSet<String>();
 	int likes;
 	Set<Comments> comments = new HashSet<Comments>();
+	
 	public Post(String title, String content, String author, Set<String> tags) {
 		this.title = title;
 		this.content = content;
