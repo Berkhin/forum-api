@@ -24,7 +24,7 @@ import telran.b7a.forum.service.ForumService;
 @RestController
 @RequestMapping("/forum")
 public class ForumController {
-@Autowired
+	@Autowired
 	ForumService service;
 
 	@Autowired
@@ -34,7 +34,7 @@ public class ForumController {
 	}
 
 	@PostMapping("/post/{author}")
-	public PostDto addNewPost(@RequestBody NewPostDto newPost,@PathVariable String author) {
+	public PostDto addNewPost(@RequestBody NewPostDto newPost, @PathVariable String author) {
 		return service.addNewPost(newPost, author);
 	}
 
@@ -54,7 +54,8 @@ public class ForumController {
 	}
 
 	@PutMapping("/post/{id}/comment/{author}")
-	public PostDto addComment(@PathVariable String id,@RequestBody NewCommentDto comment,@PathVariable String author) {
+	public PostDto addComment(@PathVariable String id, @RequestBody NewCommentDto comment,
+			@PathVariable String author) {
 		return service.AddComment(id, comment, author);
 	}
 
@@ -62,20 +63,20 @@ public class ForumController {
 	public PostDto deletePost(@PathVariable String id) {
 		return service.DeletePost(id);
 	}
-	
+
 	@PostMapping("/posts/tags")
-	public List<PostDto> findPostByTags (@RequestBody Set<String> tags) {
+	public List<PostDto> findPostByTags(@RequestBody Set<String> tags) {
 		return service.FindPostByTags(tags);
-		
+
 	}
-	
+
 	@PostMapping("/posts/period")
 	public List<PostDto> findPostByPeriod(@RequestBody FindPostByPeriodDto findPostsInPeriod) {
 		return service.FindPostByPeriod(findPostsInPeriod);
 	}
 
 	@PutMapping("/post/{id}")
-	public PostDto updatePost(@RequestBody NewPostDto postUpdateDto ,@PathVariable("id") String id) {
+	public PostDto updatePost(@RequestBody NewPostDto postUpdateDto, @PathVariable("id") String id) {
 		return service.UpdatePost(postUpdateDto, id);
 	}
 }
