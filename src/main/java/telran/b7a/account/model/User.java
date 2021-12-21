@@ -14,10 +14,11 @@ import lombok.Setter;
 import lombok.ToString;
 import telran.b7a.account.dto.RolesDto;
 import telran.b7a.forum.model.Comments;
-@AllArgsConstructor
+//@AllArgsConstructor
 //@NoArgsConstructor
 @EqualsAndHashCode
 @Getter
+@Setter
 @ToString
 public class User {
 	@Id
@@ -36,6 +37,21 @@ public class User {
 	public User() {
 		roles = new HashSet<String>();
 		roles.add("USER");
+	
+	}
+
+	public User(String login, String password, String firstName, String lastName) {
+		this.login = login;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		roles = new HashSet<String>();
+		roles.add("USER");
+		}
+
+	public void addRole(String role) {
+		roles.add(role);
+		
 	}
 
 	

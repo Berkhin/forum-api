@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Builder
-public class updateUserDto {
+public class UpdateUserDto {
 	String firstName;
 	String lastName;
 }

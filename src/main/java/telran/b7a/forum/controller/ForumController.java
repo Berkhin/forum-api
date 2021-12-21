@@ -40,7 +40,7 @@ public class ForumController {
 
 	@GetMapping("/post/{id}")
 	public PostDto findPostById(@PathVariable("id") String id) {
-		return service.FindPostById(id);
+		return service.findPostById(id);
 	}
 
 	@PutMapping("/post/{id}/like")
@@ -50,33 +50,33 @@ public class ForumController {
 
 	@GetMapping("/posts/author/{author}")
 	public Iterable<PostDto> findPostByAuthor(@PathVariable("author") String author) {
-		return service.FindPostByAuthor(author);
+		return service.findPostByAuthor(author);
 	}
 
 	@PutMapping("/post/{id}/comment/{author}")
 	public PostDto addComment(@PathVariable String id, @RequestBody NewCommentDto comment,
 			@PathVariable String author) {
-		return service.AddComment(id, comment, author);
+		return service.addComment(id, comment, author);
 	}
 
 	@DeleteMapping("/post/{id}")
 	public PostDto deletePost(@PathVariable String id) {
-		return service.DeletePost(id);
+		return service.deletePost(id);
 	}
 
 	@PostMapping("/posts/tags")
 	public List<PostDto> findPostByTags(@RequestBody Set<String> tags) {
-		return service.FindPostByTags(tags);
+		return service.findPostByTags(tags);
 
 	}
 
 	@PostMapping("/posts/period")
 	public List<PostDto> findPostByPeriod(@RequestBody FindPostByPeriodDto findPostsInPeriod) {
-		return service.FindPostByPeriod(findPostsInPeriod);
+		return service.findPostByPeriod(findPostsInPeriod);
 	}
 
 	@PutMapping("/post/{id}")
 	public PostDto updatePost(@RequestBody NewPostDto postUpdateDto, @PathVariable("id") String id) {
-		return service.UpdatePost(postUpdateDto, id);
+		return service.updatePost(postUpdateDto, id);
 	}
 }

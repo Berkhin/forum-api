@@ -14,13 +14,13 @@ import telran.b7a.forum.dto.PostDto;
 public interface ForumService {
 
 PostDto addNewPost (NewPostDto newPost, String author);
- PostDto FindPostById (String id);
+ PostDto findPostById (String id);
  void addlike (String id);
- Iterable<PostDto> FindPostByAuthor (String author);
- PostDto AddComment (String id, NewCommentDto comment, String author);
- PostDto DeletePost (String id);
- List<PostDto> FindPostByTags (Set<String> tags);
- List<PostDto> FindPostByPeriod (FindPostByPeriodDto madePeriod);
- PostDto UpdatePost (NewPostDto postUpdateDto ,String id);
+ Iterable<PostDto> findPostByAuthor (String author);
+ PostDto addComment (String id, NewCommentDto comment, String author);
+ PostDto deletePost (String id);
+ List<PostDto> findPostByTags (Set<String> tags);
+ List<PostDto> findPostByPeriod (FindPostByPeriodDto madePeriod);
+ PostDto updatePost (NewPostDto postUpdateDto ,String id);
 	
 }
