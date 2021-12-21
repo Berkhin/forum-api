@@ -39,7 +39,7 @@ public class UpdatePostFilter implements Filter {
 			String[] authorPost = request.getServletPath().split("/");
 			String postId = authorPost[authorPost.length - 1];
 			if (forumRepository.findById(postId).isEmpty()) {
-				response.sendError(403);
+				response.sendError(401, "Post not found");
 				return;
 			}
 			String nameUser = forumRepository.findById(postId).get().getAuthor();
